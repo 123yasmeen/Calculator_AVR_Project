@@ -5,4 +5,8 @@
  *      Author: user
  */
 
+int main()
+{
 
+	return 0;
+}

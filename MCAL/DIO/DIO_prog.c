@@ -4,8 +4,8 @@
  *  Created on: Feb 11, 2023
  *      Author: user
  */
-#include "stdTypes.h"
-#include "errorStates.h"
+#include "../../LIB/stdTypes.h"
+#include "../../LIB/errorStates.h"
 #include "DIO_config.h"
 #include "DIO_priv.h"
 ES_t DIO_enuInit(void)
