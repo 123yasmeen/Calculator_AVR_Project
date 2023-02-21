@@ -24,26 +24,32 @@
 #define DIO_PIN6    6
 #define DIO_PIN7    7
 
+//Directions
 #define INPUT       0
 #define OUTPUT      1
 
+//Values
 #define LOW         0
 #define HIGH        1
 #define FLOAT       0
 #define PULL_UP     1
-//PORTA
+
+//PORTA Registers
 #define PORTA   (*(volatile u8*)(0x3B))
 #define DDRA    (*(volatile u8*)(0x3A))
 #define PINA    (*(volatile u8*)(0x39))
-//PORTB
+
+//PORTB Registers
 #define PORTB   (*(volatile u8*)(0x38))
 #define DDRB    (*(volatile u8*)(0x37))
 #define PINB    (*(volatile u8*)(0x36))
-//PORTC
+
+//PORTC Registers
 #define PORTC   (*(volatile u8*)(0x35))
 #define DDRC    (*(volatile u8*)(0x34))
 #define PINC    (*(volatile u8*)(0x33))
-//PORTD
+
+//PORTD Registers
 #define PORTD   (*(volatile u8*)(0x32))
 #define DDRD    (*(volatile u8*)(0x31))
 #define PIND    (*(volatile u8*)(0x30))
