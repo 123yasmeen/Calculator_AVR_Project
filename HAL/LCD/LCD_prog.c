@@ -62,7 +62,7 @@ ES_t LCD_enuDisplayChar(u8 Copy_u8Data)
 {
 	u8 Local_u8ErrorState=ES_NOK;
 	//Set RS as data
-	Local_u8ErrorState=DIO_enuSetPinValue(RS_PORT,RS_PIN,DIO_u8LOW);
+	Local_u8ErrorState=DIO_enuSetPinValue(RS_PORT,RS_PIN,DIO_u8HIGH);
 	LCD_voidLatch(Copy_u8Data);
 
 	return Local_u8ErrorState;

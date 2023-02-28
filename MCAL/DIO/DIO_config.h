@@ -8,18 +8,18 @@
 #ifndef DIO_CONFIG_H_
 #define DIO_CONFIG_H_
 //Directions(input/output)
-#define PA_PIN0_DIR      INPUT
-#define PA_PIN1_DIR      INPUT
-#define PA_PIN2_DIR      INPUT
-#define PA_PIN3_DIR      INPUT
-#define PA_PIN4_DIR      INPUT
-#define PA_PIN5_DIR      INPUT
-#define PA_PIN6_DIR      INPUT
-#define PA_PIN7_DIR      INPUT
+#define PA_PIN0_DIR      OUTPUT
+#define PA_PIN1_DIR      OUTPUT
+#define PA_PIN2_DIR      OUTPUT
+#define PA_PIN3_DIR      OUTPUT
+#define PA_PIN4_DIR      OUTPUT
+#define PA_PIN5_DIR      OUTPUT
+#define PA_PIN6_DIR      OUTPUT
+#define PA_PIN7_DIR      OUTPUT
 
-#define PB_PIN0_DIR      INPUT
-#define PB_PIN1_DIR      INPUT
-#define PB_PIN2_DIR      INPUT
+#define PB_PIN0_DIR      OUTPUT
+#define PB_PIN1_DIR      OUTPUT
+#define PB_PIN2_DIR      OUTPUT
 #define PB_PIN3_DIR      INPUT
 #define PB_PIN4_DIR      INPUT
 #define PB_PIN5_DIR      INPUT

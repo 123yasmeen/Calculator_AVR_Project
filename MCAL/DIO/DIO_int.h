@@ -27,6 +27,7 @@
 
 #define DIO_u8LOW     0
 #define DIO_u8HIGH    1
+
 #define DIO_u8FLOAT   0
 #define DIO_u8PULLUP  1
 
