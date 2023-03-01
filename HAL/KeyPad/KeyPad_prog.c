@@ -94,7 +94,7 @@ ES_t KeyPad_enuKeyPressed(u8* Copy_pu8PressedKey)
 				}
 			}
 
-			//deactivate column
+			//deactivate columns
 			Local_u8ErrorState=DIO_enuSetPinValue(Local_u8ArrColumnsPorts[Local_u8ColIterator],Local_u8ArrColumnsPins[Local_u8ColIterator],DIO_u8HIGH);
 		}
 

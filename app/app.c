@@ -1,5 +1,6 @@
 /*
  * app.c
+
  *
  *  Created on: Feb 20, 2023
  *      Author: user
@@ -22,7 +23,7 @@ u8 APP_Arru8StringResult[7];
 u8 APP_Arru8Number1[7],APP_Arru8Number2[7],APP_u8State;
 u8 APP_u8Operator,APP_u8Operand1,APP_u8Operand2;
 u8 APP_u8LineCounter,APP_u8Iterator;
-s8 APP_u8Res;
+u8 APP_u8Res;
 ES_t APP_enuAppInit(void)
 {
 	ES_t Local_enuErrorState=ES_NOK;
@@ -39,6 +40,7 @@ ES_t APP_enuAppInit(void)
 
 ES_t APP_enuStart(void)
 {
+
 	ES_t Local_enuErrorState=ES_NOK;
 	while(APP_u8LineCounter<7)
 	{
@@ -63,12 +65,14 @@ ES_t APP_enuStart(void)
 	{
 		APP_u8Operator='-';
 		APP_Arru8Number1[APP_u8LineCounter]='\0';
+		//LCD_enuDisplayChar(APP_Arru8Number1[APP_u8LineCounter]);
 		break;
 	}
 
 	else if(APP_Arru8Number1[APP_u8LineCounter]=='*')
 	{
 		APP_u8Operator='*';
+		//LCD_enuDisplayChar(APP_u8Operator);
 		APP_Arru8Number1[APP_u8LineCounter]='\0';
 		break;
 	}
@@ -105,46 +109,70 @@ while(APP_u8LineCounter<7)
 	APP_u8LineCounter++;
 }
 
+APP_u8LineCounter=0;
 //convert the two number to integers
 APP_u8Operand1=APP_inu8ConvertToInt(APP_Arru8Number1);
 APP_u8Operand2=APP_inu8ConvertToInt(APP_Arru8Number2);
-
 //switch cases to do the operations
 switch(APP_u8Operator)
 {
 case'+':
 	APP_u8Res=APP_u8Operand1 + APP_u8Operand2;
+	APP_inVoidConvertToString(APP_Arru8StringResult,APP_u8Res);
+		while(APP_Arru8StringResult[APP_u8Iterator]!='\0')
+	{
+		//display the characters of the string
+		LCD_enuDisplayChar(APP_Arru8StringResult[APP_u8Iterator]);
+		APP_u8Iterator++;
+	}
 	break;
+
 case'-':
 	APP_u8Res=APP_u8Operand1 - APP_u8Operand2;
+	APP_inVoidConvertToString(APP_Arru8StringResult,APP_u8Res);
+	while(APP_Arru8StringResult[APP_u8Iterator]!='\0')
+	{
+		//display the characters of the string
+		LCD_enuDisplayChar(APP_Arru8StringResult[APP_u8Iterator]);
+		APP_u8Iterator++;
+	}
 	break;
 case'*':
 	APP_u8Res=APP_u8Operand1 * APP_u8Operand2;
+	APP_inVoidConvertToString(APP_Arru8StringResult,APP_u8Res);
+		while(APP_Arru8StringResult[APP_u8Iterator]!='\0')
+		{
+			//display the characters of the string
+			LCD_enuDisplayChar(APP_Arru8StringResult[APP_u8Iterator]);
+			APP_u8Iterator++;
+		}
 	break;
 case'/':
 	APP_u8Res=APP_u8Operand1 / APP_u8Operand2;
+	APP_inVoidConvertToString(APP_Arru8StringResult,APP_u8Res);
+		while(APP_Arru8StringResult[APP_u8Iterator]!='\0')
+		{
+			//display the characters of the string
+			LCD_enuDisplayChar(APP_Arru8StringResult[APP_u8Iterator]);
+			APP_u8Iterator++;
+		}
 	break;
 }
-
-//convert the result to string
-APP_inVoidConvertToString(APP_Arru8StringResult,APP_u8Res);
-
-//loop till you reach to the null character
-while(APP_Arru8StringResult[APP_u8Iterator]!='\0')
-{
-	//display the characters of the string
-	Local_enuErrorState=LCD_enuDisplayChar(APP_Arru8StringResult[APP_u8Iterator]);
-	APP_u8Iterator++;
-}
-
+APP_u8Iterator=0;
 //check if the user want to start new operation
-if(KeyPad_enuKeyPressed(&APP_u8State)=='c')
+do
+		{
+			//get the first number and the operator
+			Local_enuErrorState=KeyPad_enuKeyPressed(&APP_u8State);
+		}
+		while(APP_u8State == KEY_NOT_PRESSED);
+if(APP_u8State=='c')
 {
-
 	//Reset the LCD
-	Local_enuErrorState=LCD_enuInit();
+	LCD_enuInit();
 }
 	return Local_enuErrorState;
+
 }
 
 
@@ -152,9 +180,10 @@ static inline u8 APP_inu8ConvertToInt(u8 Copy_u8String[])
 {
 	u8 Local_u8Number=0;
 	u8 Local_u8Iterator=0;
-	while(Copy_u8String[Local_u8Iterator++]!='\0')
+	while(Copy_u8String[Local_u8Iterator]!='\0')
 	{
 		Local_u8Number=Local_u8Number*10 + (Copy_u8String[Local_u8Iterator]-'0');
+		Local_u8Iterator++;
 	}
 
 	return Local_u8Number;
@@ -180,23 +209,3 @@ static inline void APP_inVoidConvertToString(u8 Copy_Arru8String[],u8 Copy_u8Num
 	 }
 	 Copy_Arru8String[Local_u8ArrayLength]='\0';
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
